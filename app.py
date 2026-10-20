@@ -1,18 +1,18 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from pathlib import Path
+import os
 
 app = Flask(__name__)
 
-# Load learning resources from the CSV file
+# Load the learning resource dataset
 BASE_DIR = Path(__file__).resolve().parent
 CSV_FILE = BASE_DIR / "resources.csv"
 
 resources = pd.read_csv(CSV_FILE)
 
-# Check that the required columns exist
 required_columns = [
     "title", "subject", "level", "type",
     "topics", "duration", "url"
@@ -28,7 +28,7 @@ if missing_columns:
         f"Missing columns in resources.csv: {missing_columns}"
     )
 
-# Clean missing text values
+# Clean missing values
 for column in ["title", "subject", "level", "type", "topics", "url"]:
     resources[column] = resources[column].fillna("").astype(str)
 
@@ -36,7 +36,7 @@ resources["duration"] = pd.to_numeric(
     resources["duration"], errors="coerce"
 ).fillna(0)
 
-# Prepare text for the recommendation engine
+# Prepare resource text for recommendations
 resources["content"] = (
     resources["subject"] + " " +
     resources["level"] + " " +
@@ -44,52 +44,35 @@ resources["content"] = (
     resources["topics"]
 )
 
-# Convert resource descriptions into TF-IDF vectors
+# Build the TF-IDF recommendation model
 vectorizer = TfidfVectorizer(stop_words="english")
 resource_vectors = vectorizer.fit_transform(resources["content"])
 
 
 @app.route("/")
 def home():
-    return """
-    <html>
-        <head><title>LearnSmart AI</title></head>
-        <body style="font-family:Arial;padding:30px;">
-            <h1>LearnSmart AI is running!</h1>
-            <p>Your AI recommendation engine is ready.</p>
-            <p>Example:
-            <a href="/recommend?subject=Python&level=Beginner&goal=learn%20basics">
-            Test recommendations</a></p>
-        </body>
-    </html>
-    """
+    return render_template("index.html")
 
 
 @app.route("/recommend", methods=["GET"])
 def recommend():
     subject = request.args.get("subject", "Python").strip()
     level = request.args.get("level", "Beginner").strip()
-    goal = request.args.get(
-        "goal", "learn programming basics"
-    ).strip()
+    goal = request.args.get("goal", "").strip()
 
     if not subject or not level or not goal:
         return jsonify({
             "error": "Subject, level, and learning goal are required."
         }), 400
 
-    # Create a profile based on the student's preferences
     student_profile = f"{subject} {level} {goal}"
-
-    # Compare the profile with available learning resources
     student_vector = vectorizer.transform([student_profile])
+
     scores = cosine_similarity(
         student_vector, resource_vectors
     ).flatten()
 
-    # Select the three most relevant resources
     best_indices = scores.argsort()[::-1][:3]
-
     recommendations = []
 
     for index in best_indices:
@@ -115,11 +98,5 @@ def recommend():
 
 
 if __name__ == "__main__":
-    print("Starting LearnSmart AI...")
-    print("Open http://127.0.0.1:5000 in your browser.")
-
-    app.run(
-        host="127.0.0.1",
-        port=5000,
-        debug=False
-    )
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=False)
