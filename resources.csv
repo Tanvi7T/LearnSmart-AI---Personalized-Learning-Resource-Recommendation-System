@@ -1,0 +1,41 @@
+title,subject,level,type,duration,topics,url
+Python Getting Started,Python,Beginner,Tutorial,30,python programming basics variables,https://www.python.org/about/gettingstarted/
+Python Tutorial,Python,Beginner,Tutorial,45,python syntax variables loops functions,https://docs.python.org/3/tutorial/
+Python Practice,Python,Beginner,Tutorial,45,python coding exercises practice,https://www.w3schools.com/python/
+Python Beginner Guide,Python,Beginner,Tutorial,60,learn python beginner programming,https://developer.mozilla.org/en-US/docs/Glossary/Python
+Python Functions,Python,Intermediate,Tutorial,60,python functions modules exceptions,https://docs.python.org/3/tutorial/
+Pandas Fundamentals,Python,Intermediate,Tutorial,60,python pandas data analysis dataframe,https://pandas.pydata.org/docs/getting_started/
+Python Virtual Environments,Python,Intermediate,Guide,30,python environments packages pip,https://docs.python.org/3/tutorial/venv.html
+Python Data Model,Python,Advanced,Documentation,90,python objects classes data model,https://docs.python.org/3/reference/datamodel.html
+Machine Learning Basics,Machine Learning,Beginner,Tutorial,60,machine learning introduction AI algorithms,https://scikit-learn.org/stable/
+Scikit-learn Getting Started,Machine Learning,Beginner,Tutorial,45,machine learning model fit predict preprocessing,https://scikit-learn.org/stable/getting_started.html
+Supervised Learning,Machine Learning,Beginner,Tutorial,60,supervised learning classification regression,https://scikit-learn.org/stable/supervised_learning.html
+Model Evaluation,Machine Learning,Intermediate,Guide,60,machine learning evaluation metrics validation,https://scikit-learn.org/stable/modules/model_evaluation.html
+Feature Selection,Machine Learning,Intermediate,Tutorial,45,machine learning feature selection data features,https://scikit-learn.org/stable/modules/feature_selection.html
+Clustering Methods,Machine Learning,Intermediate,Tutorial,60,unsupervised learning clustering k means,https://scikit-learn.org/stable/modules/clustering.html
+Decision Trees,Machine Learning,Intermediate,Tutorial,60,decision tree classification regression,https://scikit-learn.org/stable/modules/tree.html
+Neural Networks Introduction,Machine Learning,Advanced,Tutorial,90,neural networks deep learning models,https://www.tensorflow.org/learn
+HTML and CSS,Web Development,Beginner,Tutorial,60,html css website structure styling,https://developer.mozilla.org/en-US/docs/Learn_web_development
+HTML Basics,Web Development,Beginner,Tutorial,45,html elements tags web pages,https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Structuring_content
+CSS Styling,Web Development,Beginner,Tutorial,60,css selectors layout responsive styling,https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Styling_basics
+JavaScript First Steps,Web Development,Beginner,Tutorial,60,javascript programming web interaction basics,https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting
+Responsive Web Design,Web Development,Intermediate,Guide,60,responsive design css flexbox grid,https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/CSS_layout
+Web Accessibility,Web Development,Intermediate,Guide,45,accessible websites semantic html usability,https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Accessibility
+HTTP Overview,Web Development,Intermediate,Guide,30,http requests responses web protocols,https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview
+Web Security Basics,Web Development,Advanced,Guide,90,web security authentication secure development,https://developer.mozilla.org/en-US/docs/Web/Security
+Data Structures,Computer Science,Beginner,Tutorial,45,data structures arrays linked lists stacks queues,https://www.geeksforgeeks.org/data-structures/
+Algorithms Introduction,Computer Science,Beginner,Tutorial,45,algorithms problem solving programming basics,https://www.geeksforgeeks.org/fundamentals-of-algorithms/
+Big O Notation,Computer Science,Beginner,Guide,30,time complexity space complexity big o,https://www.geeksforgeeks.org/analysis-of-algorithms-set-1-asymptotic-analysis/
+Sorting Algorithms,Computer Science,Intermediate,Tutorial,60,sorting algorithms bubble merge quick sort,https://www.geeksforgeeks.org/sorting-algorithms/
+Graph Algorithms,Computer Science,Intermediate,Tutorial,75,graphs bfs dfs shortest path algorithms,https://www.geeksforgeeks.org/graph-data-structure-and-algorithms/
+Operating Systems Concepts,Computer Science,Intermediate,Guide,60,operating systems processes memory scheduling,https://www.geeksforgeeks.org/operating-systems/
+Database Fundamentals,Computer Science,Beginner,Tutorial,60,database SQL tables queries relational database,https://www.w3schools.com/sql/
+Computer Networks,Computer Science,Advanced,Guide,90,computer networks TCP IP routing protocols,https://www.geeksforgeeks.org/computer-network-tutorials/
+Data Analysis Introduction,Data Analysis,Beginner,Tutorial,45,data analysis introduction datasets insights,https://www.kaggle.com/learn
+NumPy Quickstart,Data Analysis,Beginner,Tutorial,45,numpy arrays numerical computing python,https://numpy.org/doc/stable/user/quickstart.html
+Pandas Data Analysis,Data Analysis,Beginner,Tutorial,60,pandas dataframes filtering cleaning analysis,https://pandas.pydata.org/docs/getting_started/
+Data Visualization with Matplotlib,Data Analysis,Beginner,Tutorial,60,matplotlib charts graphs data visualization,https://matplotlib.org/stable/tutorials/
+Cleaning Data,Data Analysis,Intermediate,Guide,60,data cleaning missing values duplicates preprocessing,https://pandas.pydata.org/docs/user_guide/missing_data.html
+Exploratory Data Analysis,Data Analysis,Intermediate,Tutorial,75,exploratory data analysis statistics patterns,https://www.kaggle.com/learn
+Statistical Analysis,Data Analysis,Advanced,Tutorial,90,statistics distributions hypothesis testing data,https://docs.scipy.org/doc/scipy/tutorial/stats.html
+Jupyter Notebook Basics,Data Analysis,Beginner,Tutorial,30,jupyter notebooks cells code data analysis,https://jupyter.org/try
