@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LearnSmart AI</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f1f5f9;
+      color: #172554;
+    }
+    header {
+      background: #0f172a;
+      color: white;
+      text-align: center;
+      padding: 28px 16px;
+    }
+    header h1 { margin: 0 0 10px; }
+    header p { margin: 0; color: #bae6fd; }
+    main {
+      max-width: 760px;
+      margin: 30px auto;
+      padding: 24px;
+    }
+    .panel {
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px #0f172a12;
+    }
+    label {
+      display: block;
+      margin: 18px 0 8px;
+      font-weight: bold;
+    }
+    select, input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 16px;
+      background: white;
+    }
+    button {
+      margin-top: 22px;
+      width: 100%;
+      padding: 14px;
+      background: #0284c7;
+      color: white;
+      border: 0;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    button:hover { background: #0369a1; }
+    #status { margin-top: 18px; }
+    .result {
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      padding: 16px;
+      border-radius: 10px;
+      margin-top: 14px;
+    }
+    .result h3 { margin-top: 0; }
+    a { color: #0369a1; }
+    footer {
+      text-align: center;
+      color: #64748b;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>📚 LearnSmart AI</h1>
+    <p>Personalized Learning Resource Recommendation System</p>
+    <p>Learn Smarter, Grow Faster</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Find Your Learning Resources</h2>
+      <p>Choose your subject and level, then describe your learning goal.</p>
+
+      <form id="recommendForm">
+        <label for="subject">Subject</label>
+        <select id="subject" required>
+          <option>Python</option>
+          <option>Machine Learning</option>
+          <option>Web Development</option>
+          <option>Computer Science</option>
+          <option>Data Analysis</option>
+        </select>
+
+        <label for="level">Learning Level</label>
+        <select id="level" required>
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Advanced</option>
+        </select>
+
+        <label for="goal">Your Learning Goal</label>
+        <input id="goal" required
+          placeholder="e.g. Understand classification algorithms">
+
+        <button type="submit">Recommend Learning Resources</button>
+      </form>
+
+      <div id="status" role="status"></div>
+      <div id="results"></div>
+    </section>
+  </main>
+
+  <footer>LearnSmart AI | AI Project Competition | Education</footer>
+
+  <script>
+    const form = document.getElementById("recommendForm");
+    const statusBox = document.getElementById("status");
+    const resultsBox = document.getElementById("results");
+
+    form.addEventListener("submit", async function(event) {
+      event.preventDefault();
+      resultsBox.replaceChildren();
+      statusBox.textContent = "Finding suitable resources...";
+
+      const params = new URLSearchParams({
+        subject: document.getElementById("subject").value,
+        level: document.getElementById("level").value,
+        goal: document.getElementById("goal").value
+      });
+
+      try {
+        const response = await fetch("/recommend?" + params.toString());
+        if (!response.ok) throw new Error("Request failed");
+
+        const data = await response.json();
+        const items = Array.isArray(data)
+          ? data : data.recommendations;
+
+        if (!Array.isArray(items) || items.length === 0) {
+          throw new Error("No recommendations returned");
+        }
+
+        statusBox.textContent = "Your recommended resources:";
+        items.forEach((item, index) => {
+          const card = document.createElement("article");
+          card.className = "result";
+
+          const title = document.createElement("h3");
+          title.textContent = (index + 1) + ". " + item.title;
+          card.appendChild(title);
+
+          const details = document.createElement("p");
+          details.textContent =
+            [item.subject, item.level, item.type,
+             item.duration_minutes
+               ? item.duration_minutes + " minutes" : ""]
+            .filter(Boolean).join(" • ");
+          card.appendChild(details);
+
+          if (item.similarity_percent != null) {
+            const score = document.createElement("p");
+            score.textContent =
+              "Similarity: " + item.similarity_percent + "%";
+            card.appendChild(score);
+          }
+
+          if (item.url) {
+            const link = document.createElement("a");
+            link.href = item.url;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.textContent = "Open learning resource";
+            card.appendChild(link);
+          }
+
+          resultsBox.appendChild(card);
+        });
+      } catch (error) {
+        statusBox.textContent =
+          "Could not load recommendations. Please try again.";
+      }
+    });
+  </script>
+</body>
+</html>
