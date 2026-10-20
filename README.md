@@ -33,12 +33,15 @@ LearnSmart AI provides a desktop application where users can:
 
 🛠️ Technologies Used
 
-- Java Swing: Desktop user interface.
-- Python: Recommendation engine.
-- Flask: Backend API.
+- Python: Main programming language.
+- Streamlit: Web interface for the deployed application.
+- Java Swing: Desktop user interface in the original version.
+- Flask: Backend API in the original version.
 - Pandas: Dataset handling and processing.
 - Scikit-learn: TF-IDF vectorization and cosine similarity.
-- CSV: Learning resource dataset.
+- CSV: Stores the learning resource dataset.
+- GitHub: Source code management.
+- Streamlit Community Cloud: Web application deployment and hosting.
 
 ⚙️ How It Works
 
